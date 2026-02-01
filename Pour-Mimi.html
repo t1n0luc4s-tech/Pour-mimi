@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html><html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pour Mimi 💛</title>
+  <style>
+    :root{
+      --bg:#f6efe9;
+      --card:#fff7f0;
+      --accent:#d8a7b1;
+      --accent2:#b8c1a6;
+      --ink:#4b3f3f;
+      --shadow: 0 20px 40px rgba(0,0,0,.12);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; min-height:100vh; display:grid; place-items:center;
+      background: radial-gradient(1200px 600px at 50% -10%, #fff, var(--bg));
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+      color:var(--ink);
+    }
+    .wrap{ text-align:center; padding:24px }
+    h1{ font-weight:600; margin:0 0 8px }
+    p.sub{ opacity:.8; margin:0 0 24px }/* Envelope */
+.envelope{
+  width:280px; height:190px; margin:0 auto; position:relative; cursor:pointer;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,.15));
+}
+.env-back{
+  position:absolute; inset:0; background:var(--card); border-radius:16px;
+}
+.env-front{
+  position:absolute; inset:0; overflow:hidden; border-radius:16px;
+}
+.env-front::before{
+  content:""; position:absolute; inset:auto 0 0 0; height:70%; background:var(--accent);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin:50% 100%;
+  transition: transform .8s ease;
+}
+.env-flap{
+  position:absolute; inset:0; background:var(--accent2);
+  clip-path: polygon(0 0, 100% 0, 50% 55%);
+  transform-origin:50% 0%;
+  transition: transform .8s ease;
+  border-top-left-radius:16px; border-top-right-radius:16px;
+}
+.seal{
+  position:absolute; left:50%; top:58%; transform:translate(-50%,-50%);
+  width:38px; height:38px; border-radius:50%; background:#fff;
+  display:grid; place-items:center; box-shadow: var(--shadow);
+  font-size:18px;
+}
+
+
+/* Letter */
+.letter{
+  position:absolute; left:10px; right:10px; bottom:10px; top:10px;
+  background:#fff; border-radius:12px; padding:18px 18px 22px;
+  transform: translateY(30%); opacity:0;
+  transition: transform .8s ease, opacity .6s ease;
+  box-shadow: var(--shadow);
+  overflow:auto;
+}
+.letter h2{ margin:0 0 8px; font-weight:600 }
+.letter p{ line-height:1.6; margin:0 0 10px }
+.sign{ margin-top:14px; font-style:italic }
+
+
+/* Open state */
+.open .env-flap{ transform: rotateX(180deg) }
+.open .env-front::before{ transform: rotateX(180deg) }
+.open .letter{ transform: translateY(0); opacity:1 }
+
+
+.hint{ margin-top:16px; opacity:.7; font-size:14px }
+.footer{ margin-top:28px; opacity:.6; font-size:12px }
+
+
+/* Cozy details */
+.sparkles{ position:absolute; inset:-20px; pointer-events:none }
+.sparkles span{
+  position:absolute; width:6px; height:6px; background:#fff; border-radius:50%;
+  animation: float 6s infinite ease-in-out;
+  opacity:.8
+}
+@keyframes float{
+  0%{ transform: translateY(0) }
+  50%{ transform: translateY(-10px) }
+  100%{ transform: translateY(0) }
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Un petit mot pour toi</h1>
+    <p class="sub">Appuie sur l’enveloppe ✉️</p><div class="envelope" id="env" aria-label="Ouvrir la lettre">
+  <div class="env-back"></div>
+  <div class="env-front"></div>
+  <div class="env-flap"></div>
+  <div class="seal">💛</div>
+  <div class="letter" role="dialog" aria-live="polite">
+    <h2>Chère Mimi,</h2>
+    <p>
+      Je voulais te laisser un petit message, juste pour toi.
+      Tu comptes énormément pour moi 💛
+    </p>
+    <p>
+      Tu es une personne incroyable, forte et précieuse, et tu es vraiment
+      la meilleure. Même quand ça ne va pas, tu mérites toute la douceur du monde.
+    </p>
+    <p>
+      Prends soin de toi, à ton rythme. Je suis là pour toi, toujours.
+    </p>
+    <div class="sign">— Quelqu’un qui t’aime beaucoup</div>
+  </div>
+  <div class="sparkles">
+    <span style="left:10%; top:20%; animation-delay:0s"></span>
+    <span style="left:80%; top:30%; animation-delay:1s"></span>
+    <span style="left:30%; top:70%; animation-delay:2s"></span>
+    <span style="left:60%; top:60%; animation-delay:3s"></span>
+  </div>
+</div>
+
+
+<div class="hint">(Re‑clique pour refermer)</div>
+<div class="footer">Fait avec beaucoup de douceur</div>
+
+
+  </div>  <script>
+    const env = document.getElementById('env');
+    env.addEventListener('click', () => env.classList.toggle('open'));
+  </script></body>
+</html>
